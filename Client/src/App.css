@@ -1,0 +1,13 @@
+.Grid-container {
+  overflow: hidden;
+  display: flex;
+  height: 100vh;
+  background-color: aliceblue;
+}
+
+.grid-item-1 {
+  z-index: 20;
+}
+.grid-item-2 {
+  width: 100%;
+}

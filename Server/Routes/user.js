@@ -1,9 +1,14 @@
 const router = require("express").Router();
 
-const Users = require("../Services/usersService");
+const User = require("../Services/usersService");
 //Add Users To Database
 router.post("/register", async (req, res) => {
-  Users.register(req, res);
+  User.register(req, res);
+});
+
+//Login Users
+router.post("/login", async (req, res) => {
+  User.login(req, res);
 });
 
 module.exports = router;

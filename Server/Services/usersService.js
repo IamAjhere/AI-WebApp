@@ -1,4 +1,4 @@
-require("dotenv").config;
+const jwt = require("jsonwebtoken");
 const User = require("../Models/user");
 const bcrypt = require("bcryptjs");
 
@@ -27,4 +27,24 @@ const register = async (req, res) => {
   });
 };
 
-module.exports = { register };
+const login = async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) return res.status(400).send("Email Dosn't exists");
+  //compare the password
+  const match = await bcrypt.compare(req.body.password, user.password);
+  if (!match) return res.status(400).send("Invalid Password");
+
+  //jwtwebtoken
+  //create and assign a token
+  const token = jwt.sign(
+    { _id: user._id, email: user.email },
+    process.env.TOKEN_SECRET
+  );
+  res.header("auth-token", token);
+  res.json({
+    Access_Token: token,
+    email: [user.email],
+  });
+};
+
+module.exports = { register, login };

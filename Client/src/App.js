@@ -5,7 +5,11 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./Pages/form";
 import LoginForm from "./Pages/loginForm";
 import RegisterForm from "./Pages/registerForm";
+import Profile from "./Pages/profile";
+import Missing from "./Pages/missing";
+
 import NavBar from "./Components/navBar";
+
 import RequireAuth from "./Components/RequireAuth";
 
 function App() {
@@ -24,8 +28,10 @@ function App() {
             <Route path="register" element={<RegisterForm />} />
           </Route>
           <Route element={<RequireAuth />}>
-            <Route path="/profile" element={<>profile</>} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/prediction" element={<>profile</>} />
           </Route>
+          <Route path="*" element={<Missing />} />
         </Routes>
       </div>
     </div>

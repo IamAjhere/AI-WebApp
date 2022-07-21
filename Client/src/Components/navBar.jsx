@@ -11,9 +11,12 @@ import {
 import { NavLink } from "react-router-dom";
 import "./CSS/NavBar.css";
 
-function NavBar({ loggedin }) {
+import useAuth from "../hooks/useAuth";
+
+function NavBar() {
+  const { auth } = useAuth();
   let NavbotBtn;
-  if (loggedin) {
+  if (auth?.email) {
     NavbotBtn = (
       <>
         <div className="nav-button">
@@ -61,10 +64,7 @@ function NavBar({ loggedin }) {
           </NavLink>
           <span className="tooltiptext">AI</span>
         </div>
-        <div className="nav-bot">
-          {NavbotBtn}
-          {console.log(loggedin)}
-        </div>
+        <div className="nav-bot">{NavbotBtn}</div>
       </div>
     </div>
   );

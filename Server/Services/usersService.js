@@ -17,7 +17,6 @@ const register = async (req, res) => {
     email: req.body.email,
     password: hashPassword,
   });
-  console.log(user);
   await user.save((error) => {
     if (error) {
       res.status(400).send("something went wrong" + error.message);

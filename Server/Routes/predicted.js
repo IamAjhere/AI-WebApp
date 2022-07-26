@@ -6,6 +6,8 @@ router.get("/prediction/:metal", async (req, res) => {
   Predicted.predict(metals, req, res);
 });
 
-router.get("/prediction/news", async (req, res) => {});
+router.get("/prediction/news/:metal", async (req, res) => {
+  Predicted.news(req, res);
+});
 
 module.exports = router;

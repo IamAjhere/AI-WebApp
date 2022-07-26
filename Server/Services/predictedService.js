@@ -18,10 +18,6 @@ const predict = (metals, req, res) => {
   });
 };
 
-const news = async (req, res) => {
-  await axios.get(
-    "https://newsapi.org/v2/everything?q=gold&from=2022-07-25&to=2022-07-25&sortBy=popularity&apiKey="
-  );
-};
+const news = async (req, res) => {};
 
-module.exports = { predict };
+module.exports = { predict, news };

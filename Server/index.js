@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 require("./Database/mongodb.js");
 //import routes
 const users = require("./Routes/user");
-
+const predict = require("./Routes/predicted");
 //middleware
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,7 +19,7 @@ app.use(
   })
 );
 //Routes Middlewares
-app.use("/api", users);
+app.use("/api", users, predict);
 
 const port = process.env.PORT;
 app.listen(port, () => console.log("server started in port", { port }));

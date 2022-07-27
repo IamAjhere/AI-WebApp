@@ -7,7 +7,8 @@ router.get("/prediction/:metal", async (req, res) => {
 });
 
 router.get("/prediction/news/:metal", async (req, res) => {
-  Predicted.news(req, res);
+  var metals = req.params.metal;
+  Predicted.news(metals, req, res);
 });
 
 module.exports = router;

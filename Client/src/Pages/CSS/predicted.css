@@ -1,0 +1,13 @@
+.Pred-Container {
+  overflow: hidden;
+  display: flex;
+  height: 100vh;
+  background-color: red;
+}
+
+.Pred-item {
+  width: 70%;
+  background-color: white;
+  gap: 20px;
+  overflow: hidden;
+}

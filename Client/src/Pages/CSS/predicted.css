@@ -1,13 +1,27 @@
-.Pred-Container {
-  overflow: hidden;
-  display: flex;
-  height: 100vh;
-  background-color: red;
+.card-header {
+  color: white !important;
+  background-color: #252a39 !important;
 }
 
-.Pred-item {
-  width: 70%;
-  background-color: white;
-  gap: 20px;
-  overflow: hidden;
+.chat-block {
+  height: 91vh !important;
+}
+
+.chat-message {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.send {
+  justify-content: flex-end;
+}
+.font-weight-bold {
+  font-weight: bold;
 }

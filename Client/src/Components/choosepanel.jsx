@@ -1,49 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "../api/axios";
 import Skeleton from "react-loading-skeleton";
 import ClipLoader from "react-spinners/ClipLoader";
 function Choosepanel({
   isloading,
-  setLoading,
   Metal,
   setMetal,
-  prediction,
-  setPrediction,
+  nextday,
+  price,
+  lastprice,
 }) {
-  const [price, setPrice] = useState("");
-  const [nextday, setNextday] = useState("");
-  const [lastprice, setLastprice] = useState("");
   const [news, setNews] = useState("btn");
-  const [loadnews, setLoadnews] = useState(false);
 
   const fetchNews = async () => {
-    setLoadnews(true);
+    setNews("load");
     await axios.get(`/prediction/news/${Metal}`).then((r) => {
       setNews(r.data.charAt(0).toUpperCase() + r.data.slice(1));
-      console.log(r.data, r.data.charAt(0).toUpperCase());
-      setLoadnews(false);
     });
   };
-
-  useEffect(() => {
-    const fetchPrice = async () => {
-      setLoading(true);
-      await axios.get(`/prediction/${Metal}`).then((r) => {
-        setPrediction(r.data);
-        setLoading(false);
-      });
-    };
-    fetchPrice();
-  }, [Metal, setLoading, setPrediction]);
-
-  useEffect(() => {
-    if (prediction.length > 0) {
-      setPrice(prediction[0].Predicted_Price);
-      const nextdaysplit = prediction[0].Date.split("T");
-      setNextday(nextdaysplit[0]);
-      setLastprice(prediction[prediction.length - 1].Predicted_Price);
-    }
-  }, [prediction]);
 
   const handlechange = (e) => {
     setMetal(e.target.value);
@@ -51,11 +25,13 @@ function Choosepanel({
   };
 
   const manageNews =
-    news == "btn" ? (
+    news === "load" ? (
+      <ClipLoader />
+    ) : news === "btn" ? (
       <button type="button" className="btn btn-dark" onClick={fetchNews}>
         Load
       </button>
-    ) : news == "" ? (
+    ) : news === "" ? (
       <span className="text-muted">Neutral</span>
     ) : (
       <span className={news === "Positive" ? "text-success " : "text-danger"}>
@@ -79,7 +55,7 @@ function Choosepanel({
           <option value="Platinum">Platinum</option>
         </select>
       </div>
-      <div className="card-body d-flex ">
+      <div className="card-body d-flex gap-3">
         <div className="card ">
           <div className="card-header text-center">
             <h5>Closing Price Tomorrow</h5>
@@ -103,9 +79,9 @@ function Choosepanel({
             {isloading ? (
               <Skeleton />
             ) : price > lastprice ? (
-              <h5 className="text-danger align-items-center">Bearish</h5>
+              <h5 className="text-danger align-items-center">Bearish ▼</h5>
             ) : (
-              <h5 className="text-success font-weight-bold">Bullish</h5>
+              <h5 className="text-success font-weight-bold">Bullish ▲</h5>
             )}
           </div>
         </div>
@@ -114,9 +90,7 @@ function Choosepanel({
           <div className="card-header text-center">
             <h5>News Analytics</h5>
           </div>
-          <div className="card-body text-center">
-            {loadnews ? <ClipLoader /> : manageNews}
-          </div>
+          <div className="card-body text-center">{manageNews}</div>
         </div>
       </div>
     </div>

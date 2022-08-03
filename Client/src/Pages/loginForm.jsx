@@ -36,7 +36,7 @@ function LoginForm() {
       //set Auth token with email and password in the context
       const accessToken = response?.data?.Access_Token;
       const role = response?.data?.accountType;
-      setAuth({ email, password, role, accessToken });
+      setAuth({ email, role, accessToken });
 
       navigate("/profile", { replace: true });
     } catch (err) {

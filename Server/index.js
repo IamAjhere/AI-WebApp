@@ -40,16 +40,20 @@ const io = socket(server, {
 //connection to socket io server
 const User = require("./Models/user");
 io.on("connect", (socket) => {
-  socket.on("disconnect", function () {
-    console.log("DISCONNESSO!!! ");
-  });
   socket.on("send-msg", async (data) => {
     const token = data.user;
     const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-    const user = await User.findById(verified._id).select("name -_id");
+    const user = await User.findById(verified._id).select("name image -_id");
     socket
       .to(data.to)
-      .emit("msg-received", data.message, user.name, data.time, data.date);
+      .emit(
+        "msg-received",
+        data.message,
+        user.name,
+        data.time,
+        data.date,
+        user.image
+      );
   });
   socket.on("join-room", (room, cb) => {
     socket.join(room);

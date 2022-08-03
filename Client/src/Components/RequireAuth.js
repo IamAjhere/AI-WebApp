@@ -4,8 +4,8 @@ import useAuth from "../hooks/useAuth";
 const RequireAuth = ({ allowedRoles }) => {
   const { auth } = useAuth();
   const location = useLocation();
-
-  return auth?.email ? (
+  const auths = localStorage.getItem("auth");
+  return auth?.email || auths ? (
     <Outlet />
   ) : (
     <Navigate to="/form/login" state={{ from: location }} replace />

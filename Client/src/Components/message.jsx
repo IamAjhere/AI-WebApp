@@ -18,6 +18,15 @@ function Message({ messages }) {
             title={message.date}
             key={i}
           >
+            <img
+              src={`${
+                message.image
+                  ? message.image
+                  : `https://eu.ui-avatars.com/api/?name=${message.user}&size=10`
+              }  `}
+              className="img-thumbnail msg-img rounded-circle m-1"
+              alt="Profile_picture"
+            />
             <div className="flex-shrink-1 bg-light rounded py-2 px-3 m-2">
               <div>
                 <div className="text-muted small text-nowrap mt-2">

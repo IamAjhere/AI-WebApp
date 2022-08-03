@@ -4,7 +4,6 @@ import Chart from "../Components/chart";
 import Skeleton from "react-loading-skeleton";
 import Choosepanel from "../Components/choosepanel";
 import GlobalChat from "../Components/globalchat";
-import "./CSS/predicted.css";
 import { io } from "socket.io-client";
 function Predicted() {
   const [Metal, setMetal] = useState("Gold");

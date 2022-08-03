@@ -45,5 +45,36 @@ const login = async (req, res) => {
     email: [user.email],
   });
 };
+const updateProfile = async (req, res, next) => {
+  try {
+    const id = req.user._id;
 
-module.exports = { register, login };
+    const updates = {
+      image: req.body?.image,
+      name: req.body?.name,
+      email: req.body?.email,
+      dateofbirth: req.body?.birthday,
+      mobile: req.body?.mobile,
+    };
+    await User.updateOne({ _id: id }, updates).then((r, err) => {
+      if (err) {
+        res.send(err);
+      }
+      res.send(r);
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const userInfo = async (req, res, next) => {
+  try {
+    await User.findOne({ _id: req.user._id }).then((r) => {
+      res.send(r);
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { register, login, updateProfile, userInfo };

@@ -11,6 +11,8 @@ function GlobalChat({ Metal, socket }) {
   const [currentChat, setCurrentChat] = useState("");
   const [messages, setMessages] = useState([]);
   const [isloading, setLoading] = useState(false);
+  const [image, setImage] = useState();
+  const [nowName, setNowName] = useState();
   //get Now time
   function getNow() {
     let dates = new Date().toLocaleString("en-US");
@@ -40,6 +42,13 @@ function GlobalChat({ Metal, socket }) {
       );
       setMessages(response.data);
       setLoading(false);
+      for (let i = 0; i < response.data.length; i++) {
+        if (response.data[i].fromSelf === true) {
+          return (
+            setImage(response.data[i].image), setNowName(response.data[i].user)
+          );
+        }
+      }
     };
     currentUser && fetchmsg();
   }, [currentChat, auth.accessToken, currentUser]);
@@ -69,23 +78,26 @@ function GlobalChat({ Metal, socket }) {
       message: msg,
       time: getNow().times,
       date: getNow().dates,
+      user: nowName,
+      image: image,
     });
     setMessages(msgs);
   };
+
   useEffect(() => {
     if (currentChat) {
-      socket.current.on("msg-received", (msg, user, time, date) => {
+      socket.current.on("msg-received", (msg, user, time, date, image) => {
         setArrivalmsg({
           fromSelf: false,
           message: msg,
           user: user,
           time: time,
           date: date,
+          image: image,
         });
       });
     }
   }, [socket, currentChat]);
-
   useEffect(() => {
     arrivalmsg && setMessages((prev) => [...prev, arrivalmsg]);
   }, [arrivalmsg]);

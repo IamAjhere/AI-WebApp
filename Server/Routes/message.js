@@ -6,4 +6,5 @@ router.post("/message", verify, message.addMessage);
 
 router.post("/allmessage", verify, message.getAllMessage);
 
+router.post("/messagehistory", verify, message.messageHistory);
 module.exports = router;

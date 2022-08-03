@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
   faChartArea,
-  faGear,
   faMicrochip,
   faUser,
   faSignIn,
@@ -24,10 +23,6 @@ function NavBar() {
             <FontAwesomeIcon icon={faUser} />
           </NavLink>
           <span className="tooltiptext">Profile</span>
-        </div>
-        <div className="nav-button">
-          <FontAwesomeIcon icon={faGear} />
-          <span className="tooltiptext">Settings</span>
         </div>
       </>
     );

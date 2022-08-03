@@ -11,3 +11,42 @@
 .grid-item-2 {
   width: 100%;
 }
+
+.card-header {
+  color: white !important;
+  background-color: #252a39 !important;
+}
+
+.chat-block {
+  height: 91vh !important;
+}
+
+.chat-message {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.send {
+  flex-direction: row-reverse;
+}
+.font-weight-bold {
+  font-weight: bold;
+}
+.prof-img {
+  width: 130px; /* You can set the dimensions to whatever you want */
+  height: 130px;
+  object-fit: cover;
+}
+
+.msg-img {
+  width: 40px; /* You can set the dimensions to whatever you want */
+  height: 40px;
+  object-fit: cover;
+}

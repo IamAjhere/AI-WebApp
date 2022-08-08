@@ -11,6 +11,7 @@ import Profile from "./Pages/profile";
 import Missing from "./Pages/missing";
 import Predicted from "./Pages/predicted";
 import Chart from "./Pages/chart";
+import Homepage from "./Pages/homepage";
 
 import NavBar from "./Components/navBar";
 
@@ -26,7 +27,7 @@ function App() {
       </div>
       <div className="grid-item grid-item-2">
         <Routes>
-          <Route path="/" element={<>Hellow world</>} />
+          <Route path="/" element={<Homepage />} />
           <Route path="chartpage" element={<Chart />} />
           <Route path="form/*" element={<Login />}>
             <Route path="login" element={<LoginForm />} />

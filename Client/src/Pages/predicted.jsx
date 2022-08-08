@@ -5,6 +5,7 @@ import Skeleton from "react-loading-skeleton";
 import Choosepanel from "../Components/choosepanel";
 import GlobalChat from "../Components/globalchat";
 import { io } from "socket.io-client";
+
 function Predicted() {
   const [Metal, setMetal] = useState("Gold");
   const [prediction, setPrediction] = useState([]);

@@ -2,7 +2,7 @@
   overflow: hidden;
   display: flex;
   height: 100vh;
-  background-color: aliceblue;
+  background: linear-gradient(90deg, #002d4f 30%, hsla(0, 0%, 7%, 0.78));
 }
 
 .grid-item-1 {
@@ -14,7 +14,7 @@
 
 .card-header {
   color: white !important;
-  background-color: #252a39 !important;
+  background-color: #002d4f !important;
 }
 
 .chat-block {
@@ -49,4 +49,53 @@
   width: 40px; /* You can set the dimensions to whatever you want */
   height: 40px;
   object-fit: cover;
+}
+
+.homepage {
+  background: linear-gradient(90deg, #002d4f 30%, hsla(0, 0%, 7%, 0.78)),
+    url(https://res.cloudinary.com/dlpnkayyj/image/upload/v1659671061/samples/banner-bg-1e694df7594e3be4b897a882591ce626_tzwzv2.jpg);
+  background-position: 30% 30%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+.theme-btn {
+  text-align: center;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  border-radius: 5px;
+  background-color: #f78361;
+  border: none;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  z-index: 1;
+}
+.theme-btn:hover {
+  color: white;
+}
+.theme-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.theme-btn span:after {
+  content: "»";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.theme-btn:hover span {
+  padding-right: 25px;
+}
+
+.theme-btn:hover span:after {
+  opacity: 1;
+  right: 0;
 }

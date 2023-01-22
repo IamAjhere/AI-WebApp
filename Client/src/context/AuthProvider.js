@@ -1,6 +1,10 @@
 import { createContext, useState, useEffect } from "react";
 
-const AuthContext = createContext({});
+const AuthContext = createContext({
+  signOut: () => {
+    window.localStorage.setItem("userToken", null);
+  },
+});
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});

@@ -11,12 +11,17 @@ function RegisterForm() {
   const [age, setAge] = useState(Date);
   const [email, setEmail] = useState("");
   const [password, setpswd] = useState("");
+  const [cpassword, setcpswd] = useState("");
   const [errmsg, setErrormsg] = useState("");
   const navigate = useNavigate();
   const REGISTER_URL = "/register";
 
   const [isloading, setLoading] = useState(false);
   const handleSubmit = async (event) => {
+    if (cpassword !== password) {
+      errmsg = "Password dosn't match!";
+      return;
+    }
     event.preventDefault();
     try {
       setLoading(true);
@@ -104,6 +109,25 @@ function RegisterForm() {
             id="password"
             onChange={(event) => {
               setpswd(event.target.value);
+            }}
+          />
+          <FontAwesomeIcon
+            icon={passwordShown ? faEye : faEyeSlash}
+            className="eye"
+            onClick={togglePassword}
+          />
+        </div>
+
+        <label htmlFor="password">Confirm Password</label>
+
+        <div>
+          <input
+            required
+            type={passwordShown ? "text" : "password"}
+            placeholder="Confirm Password"
+            id="password"
+            onChange={(event) => {
+              setcpswd(event.target.value);
             }}
           />
           <FontAwesomeIcon

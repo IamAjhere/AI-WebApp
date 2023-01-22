@@ -9,12 +9,13 @@ import {
   faSave,
   faBackspace,
   faImage,
+  faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 function Profilecomponent() {
   const [edit, setEdit] = useState(false);
   const [image, setImage] = useState();
   const [saveimage, setSaveimage] = useState();
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
   const [userInfo, setUserInfo] = useState();
   const [isloading, setLoading] = useState(false);
   const [infosaved, setInfosaved] = useState(false);
@@ -44,14 +45,23 @@ function Profilecomponent() {
     userInfo && setImage(userInfo.image);
   }, [userInfo]);
   const saved = async (img) => {
+    const reg = new RegExp("^[0-9]+$");
+    const date = new Date(birthday);
+    if (mobile !== "") {
+      if (mobile.length > 10 || !reg.test(mobile)) {
+        alert("Invalid Number");
+        return;
+      }
+    }
     setLoading(true);
+
     await axios
       .post(
         "/updateuser",
         {
           name: name,
           email: email,
-          dateofbirth: birthday,
+          dateofbirth: date,
           mobile: mobile,
           image: img,
         },
@@ -67,6 +77,11 @@ function Profilecomponent() {
   function toggle() {
     setEdit(!edit);
   }
+  const logout = () => {
+    setAuth({});
+    window.location.reload();
+  };
+
   const save = async (e) => {
     e.preventDefault();
     if (saveimage) {
@@ -94,6 +109,9 @@ function Profilecomponent() {
       <div className="m-1 w-75 mx-auto d-block">
         <button className="btn border btn-secondary" onClick={toggle}>
           <FontAwesomeIcon icon={faGear} /> Edit
+        </button>
+        <button className="btn border btn-secondary" onClick={logout}>
+          <FontAwesomeIcon icon={faSignOut} /> Logout
         </button>
         <div className="card mb-4">
           <div className="card-body">

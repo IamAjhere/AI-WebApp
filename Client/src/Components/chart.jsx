@@ -5,8 +5,6 @@ export default class Charts extends React.Component {
     super(props);
     var data = [];
 
-    console.log();
-
     this.props.price.forEach((i) => {
       let price = i.Predicted_Price;
       let date = i.Date;

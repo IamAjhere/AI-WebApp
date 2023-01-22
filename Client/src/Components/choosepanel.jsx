@@ -76,6 +76,7 @@ function Choosepanel({
             <h5>AI Analytics</h5>
           </div>
           <div className="card-body text-center ">
+            {console.log(lastprice, price)}
             {isloading ? (
               <Skeleton />
             ) : price > lastprice ? (

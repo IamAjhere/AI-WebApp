@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../Models/user");
 const bcrypt = require("bcryptjs");
-
+const sendEmail = require("./nodemailer");
 const register = async (req, res) => {
   const emailExist = await User.findOne({ email: req.body.email });
   if (emailExist) return res.status(400).send("Email already exists");
@@ -17,13 +17,13 @@ const register = async (req, res) => {
     email: req.body.email,
     password: hashPassword,
   });
-  await user.save((error) => {
-    if (error) {
-      res.status(400).send("something went wrong" + error.message);
-    } else {
-      res.status(200).send("success");
-    }
-  });
+  await user.save();
+  sendEmail(
+    req.body.email,
+    "Created New Account",
+    "Your Account Created Sucessfully: \n" + "Login Email: " + user.email
+  );
+  res.send("Sucessfully Added Account");
 };
 
 const login = async (req, res) => {

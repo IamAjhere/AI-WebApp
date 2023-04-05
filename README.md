@@ -1,70 +1,77 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Bullion Price Prediction System
 
-## Available Scripts
+The Bullion Price Prediction System is a comprehensive application that combines a stacked LSTM-based prediction model with a MERN stack web application to provide users with real-time bullion price predictions, sentiment analysis, and a community chat room. The system utilizes historical data from Yahoo Finance and TensorFlow to predict gold, silver, and platinum prices for the next 30 days.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Stacked LSTM-based prediction model using TensorFlow for gold, silver, and platinum prices
+- MERN stack web application with a user-friendly interface
+- Real-time bullion price predictions and charts
+- Sentiment analysis feature for the latest bullion news
+- Real-time chatting room for community discussions
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Before you begin the installation process, ensure you have the following prerequisites installed:
 
-### `npm run build`
+- Python 3.8 or later
+- Node.js 14.x or later
+- MongoDB
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### LSTM Script Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1.  Navigate to the `LSTM_script` folder and install the required packages by running the following command:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+	`pip install -r requirements.txt` 
 
-### `npm run eject`
+2.  Run the `python_lstm.py` script to generate models for gold, silver, and platinum:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+	`python python_lstm.py` 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3.  Update the MongoDB URI in the `predict_&_upload.py` script with your MongoDB instance's connection details.
+    
+4.  Run the `predict_&_upload.py` script to save the predicted data for each metal type in separate collections:
+    
+	`python predict_&_upload.py` 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Web Application Setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1.  In the root folder, navigate to the `client` folder and run the following command to start the React frontend:
 
-## Learn More
+	``cd client
+npm install
+npm start``
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2.  Create a `.env` file in the `server` folder and add the following environment variables, replacing `<value>` with the appropriate values:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+	`NEWSAPI_SECRET=<your_newsapi_secret>
+USERR=<your_username>
+PASS=<your_password>
+TOKEN_SECRET=<your_token_secret>`
 
-### Code Splitting
+3.  In a separate terminal, navigate to the `server` folder and run the following command to start the Node.js backend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+	``cd server
+npm install
+npm start`` 
 
-### Analyzing the Bundle Size
+The Bullion Price Prediction System is now up and running. You can access the web application by opening your browser and navigating to `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Usage
 
-### Making a Progressive Web App
+1.  Open the web application in your browser at `http://localhost:3000`.
+2.  View real-time bullion price predictions and charts for gold, silver, and platinum.
+3.  Use the sentiment analysis feature to get insights into the latest bullion news.
+4.  Join the real-time chat room to discuss market trends and predictions with other users.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License. See the [LICENSE](https://www.mit.edu/~amini/LICENSE.md) file for details.

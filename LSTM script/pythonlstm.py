@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1EjeZ08_mGBgl2MJPUllK6C_On9mdaTrt
 """
 
-pip install yfinance
-
 Silver = "SI=F"
 Platinum = "PL=F"
 Gold = "GC=F"

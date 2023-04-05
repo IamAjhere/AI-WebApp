@@ -6,6 +6,8 @@ Metal = "Platinum"
 getmetal = Platinum
 modelmetal = Metal +'priceMax_model.h5'
 
+##MONGODB URI
+uri = "" ## URI
 
 ##predict days
 days = 30
@@ -161,7 +163,6 @@ data_dict = merged_list.to_dict("records")
 
 import pymongo
 from pymongo import MongoClient
-uri = "" ## URI
 client = MongoClient(uri)
 
 db = client.test
